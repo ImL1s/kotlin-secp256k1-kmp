@@ -1,5 +1,8 @@
 # secp256k1-kmp
 
+> [!IMPORTANT]
+> **Fork Information**: This project is forked from [ACINQ/secp256k1-kmp](https://github.com/ACINQ/secp256k1-kmp). It features a **Pure Kotlin** implementation for Apple platforms (iOS/WatchOS) to ensure full compatibility without native C-library dependencies.
+
 <p align="center">
   <img src="./docs/images/hero.png" alt="Secp256k1 KMP Hero" width="100%">
 </p>
