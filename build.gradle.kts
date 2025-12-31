@@ -11,25 +11,9 @@ plugins {
     `maven-publish`
 }
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.13.1")
-    }
-}
-
 allprojects {
     group = "fr.acinq.secp256k1"
     version = "0.23.0-SNAPSHOT"
-
-    repositories {
-        google()
-        mavenCentral()
-    }
 }
 
 val currentOs = OperatingSystem.current()
@@ -37,7 +21,12 @@ val currentOs = OperatingSystem.current()
 kotlin {
     explicitApi()
 
-    val commonMain by sourceSets.getting
+    val commonMain by sourceSets.getting {
+        dependencies {
+            implementation("org.kotlincrypto.hash:sha2:0.5.3")
+            implementation("com.ionspin.kotlin:bignum:0.3.9")
+        }
+    }
 
     jvm {
         compilerOptions {
@@ -56,12 +45,20 @@ kotlin {
         compilations["main"].cinterops {
             val libsecp256k1 by creating {
                 includeDirs.headerFilterOnly(project.file("native/secp256k1/include/"))
-                tasks[interopProcessingTaskName].dependsOn(":native:buildSecp256k1${target.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}")
+                includeDirs.headerFilterOnly(project.file("native/secp256k1/include/"))
+                if (findProject(":native") != null) {
+                    tasks[interopProcessingTaskName].dependsOn(":native:buildSecp256k1${target.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }}")
+                }
             }
         }
     }
 
-    val nativeMain by sourceSets.creating
+    val nativeMain by sourceSets.creating {
+        dependsOn(commonMain)
+    }
+    val appleMain by sourceSets.creating {
+        dependsOn(commonMain)
+    }
 
     linuxX64 {
         secp256k1CInterop("host")
@@ -80,15 +77,23 @@ kotlin {
     }
 
     iosX64 {
-        secp256k1CInterop("ios")
+        compilations["main"].defaultSourceSet.dependsOn(appleMain)
     }
-
     iosArm64 {
-        secp256k1CInterop("ios")
+        compilations["main"].defaultSourceSet.dependsOn(appleMain)
+    }
+    iosSimulatorArm64 {
+        compilations["main"].defaultSourceSet.dependsOn(appleMain)
     }
 
-    iosSimulatorArm64 {
-        secp256k1CInterop("ios")
+    watchosArm64 {
+        compilations["main"].defaultSourceSet.dependsOn(appleMain)
+    }
+    watchosSimulatorArm64 {
+        compilations["main"].defaultSourceSet.dependsOn(appleMain)
+    }
+    watchosX64 {
+        compilations["main"].defaultSourceSet.dependsOn(appleMain)
     }
 
     sourceSets.all {
