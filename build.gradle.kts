@@ -62,10 +62,12 @@ kotlin {
 
     linuxX64 {
         secp256k1CInterop("host")
+        compilations["main"].defaultSourceSet.dependsOn(nativeMain)
     }
 
     linuxArm64 {
         secp256k1CInterop("linuxArm64")
+        compilations["main"].defaultSourceSet.dependsOn(nativeMain)
     }
 
     macosX64 {
