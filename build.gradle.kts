@@ -6,8 +6,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.*
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.dokka)
+    id("org.jetbrains.kotlin.multiplatform") version "2.1.0"
+    id("org.jetbrains.dokka") version "1.9.20"
     `maven-publish`
 }
 
@@ -157,7 +157,7 @@ allprojects {
         publishing {
             publications.withType<MavenPublication>().configureEach {
                 version = project.version.toString()
-                artifact(javadocJar)
+                // artifact(javadocJar)
                 pom {
                     name.set("secp256k1 for Kotlin/Multiplatform")
                     description.set("Bitcoin's secp256k1 library ported to Kotlin/Multiplatform for JVM, Android, iOS & Linux")
@@ -192,32 +192,32 @@ allprojects {
         afterEvaluate {
             val dokkaOutputDir = layout.buildDirectory.dir("dokka")
 
-            dokka {
-                moduleName = "secp256k1-kmp"
-                dokkaPublications.html {
-                    outputDirectory.set(dokkaOutputDir)
-                    dokkaSourceSets {
-                        configureEach {
-                            val platformName = analysisPlatform.get().name
-                            displayName.set(platformName)
-
-                            perPackageOption {
-                                matchingRegex.set(".*\\.internal.*") // will match all .internal packages and sub-packages
-                                suppress.set(true)
-                            }
-                        }
-                    }
-                }
-            }
+            // dokka {
+            //     moduleName = "secp256k1-kmp"
+            //     dokkaPublications.html {
+            //         outputDirectory.set(dokkaOutputDir)
+            //         dokkaSourceSets {
+            //             configureEach {
+            //                 val platformName = analysisPlatform.get().name
+            //                 displayName.set(platformName)
+            //
+            //                 perPackageOption {
+            //                     matchingRegex.set(".*\\.internal.*") // will match all .internal packages and sub-packages
+            //                     suppress.set(true)
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
 
             val deleteDokkaOutputDir by tasks.register<Delete>("deleteDokkaOutputDirectory") {
                 delete(dokkaOutputDir)
             }
 
-            javadocJar {
-                dependsOn(deleteDokkaOutputDir, tasks.dokkaGenerate)
-                from(dokkaOutputDir)
-            }
+            // javadocJar {
+            //    dependsOn(deleteDokkaOutputDir, tasks.dokkaGenerate)
+            //    from(dokkaOutputDir)
+            // }
         }
     }
 */
