@@ -179,6 +179,7 @@ allprojects {
         }
     }
 
+/*
     if (project.name !in listOf("native", "tests")) {
         afterEvaluate {
             val dokkaOutputDir = layout.buildDirectory.dir("dokka")
@@ -211,6 +212,7 @@ allprojects {
             }
         }
     }
+*/
 }
 
 allprojects {
