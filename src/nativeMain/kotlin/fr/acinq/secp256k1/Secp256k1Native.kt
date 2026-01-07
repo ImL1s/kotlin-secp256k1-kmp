@@ -24,7 +24,7 @@ public object Secp256k1Native : Secp256k1 {
             input.size < 64 -> throw Secp256k1Exception("Unknown signature format")
             else -> secp256k1_ecdsa_signature_parse_der(ctx, sig.ptr, nativeBytes, input.size.convert())
         }
-        result.requireSuccess("cannot parse signature (size = ${input.size} sig = ${SecpHex.encode(input)}")
+        result.requireSuccess("cannot parse signature (size = ${input.size} sig = ${Hex.encode(input)}")
         return sig
     }
 
@@ -112,7 +112,7 @@ public object Secp256k1Native : Secp256k1 {
     }
 
     public override fun signatureNormalize(sig: ByteArray): Pair<ByteArray, Boolean> {
-        require(sig.size >= 64) { "invalid signature ${SecpHex.encode(sig)}" }
+        require(sig.size >= 64) { "invalid signature ${Hex.encode(sig)}" }
         memScoped {
             val nSig = allocSignature(sig)
             val isHighS = secp256k1_ecdsa_signature_normalize(ctx, nSig.ptr, nSig.ptr)
