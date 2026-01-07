@@ -1,6 +1,6 @@
 package fr.acinq.secp256k1
 
-public object Hex {
+public object SecpHex {
     private val hexArray = "0123456789abcdef".toCharArray()
 
     public fun encode(bytes: ByteArray): String {
