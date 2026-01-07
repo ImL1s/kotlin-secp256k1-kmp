@@ -45,7 +45,15 @@ val currentOs = OperatingSystem.current()
 kotlin {
     explicitApi()
 
-    val commonMain by sourceSets.getting
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api("io.github.iml1s:crypto-core:1.3.0")
+                implementation("com.ionspin.kotlin:bignum:0.3.9")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+            }
+        }
+    }
 
     jvm {
         compilerOptions {
