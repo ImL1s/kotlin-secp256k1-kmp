@@ -95,6 +95,11 @@ jobs:
         shell: bash
         run: |
           ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "ndk;$ANDROID_NDK_VERSION"
+      - name: Skip Android (ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          echo "skip.android=true" > local.properties
       - name: Skip Android (windows)
         if: matrix.os == 'windows-latest'
         shell: msys2 {0}
