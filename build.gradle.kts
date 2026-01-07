@@ -6,8 +6,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.*
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform") version "2.1.0"
-    id("org.jetbrains.dokka") version "1.9.20"
+    alias(libs.plugins.kotlin.multiplatform)
+    if (System.getProperty("includeAndroid")?.toBoolean() == true) {
+        id("com.android.library")
+    }
+    alias(libs.plugins.dokka)
     `maven-publish`
 }
 

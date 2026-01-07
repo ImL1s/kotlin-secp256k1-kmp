@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeHostTest
 import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest
 
 plugins {
-    kotlin("multiplatform")
+    alias(libs.plugins.kotlin.multiplatform)
     if (System.getProperty("includeAndroid")?.toBoolean() == true) {
         id("com.android.library")
     }
