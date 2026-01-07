@@ -51,7 +51,9 @@ kotlin {
             dependencies {
                 api("io.github.iml1s:crypto-core:1.3.0")
                 implementation("com.ionspin.kotlin:bignum:0.3.9")
-                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.serialization.json) {
+                    version { strictly(libs.versions.serialization.get()) }
+                }
             }
         }
     }
