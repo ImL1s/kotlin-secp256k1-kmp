@@ -45,9 +45,9 @@ jobs:
       - name: Update Ubuntu apt cache
         if: matrix.os == 'ubuntu-latest'
         run: sudo apt-get update
-      - name: Install cross compiler
+      - name: Install cross compiler and autotools
         if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get install -y g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
+        run: sudo apt-get install -y g++-aarch64-linux-gnu binutils-aarch64-linux-gnu automake libtool
       - name: Cached Konan
         uses: actions/cache@v4
         with:
