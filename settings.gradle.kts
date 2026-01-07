@@ -11,6 +11,14 @@ pluginManagement {
         }
     }
 }
+val cryptoPath = listOf("../kotlin-crypto-pure", "./kotlin-crypto-pure")
+    .map { file(it) }
+    .firstOrNull { it.exists() }
+
+if (cryptoPath != null) {
+    includeBuild(cryptoPath)
+}
+
 rootProject.name = "secp256k1-kmp"
 
 // We use a property defined in `local.properties` to know whether we should build the android application or not.

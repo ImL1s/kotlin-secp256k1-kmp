@@ -13,6 +13,10 @@ on:
       - '.github/**'
       - '!.github/workflows/snapshot.yml'
 
+defaults:
+  run:
+    working-directory: main
+
 jobs:
 
   upload:
@@ -25,7 +29,13 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
         with:
+          path: main
           submodules: 'recursive'
+      - name: Check out crypto-pure
+        uses: actions/checkout@v4
+        with:
+          repository: ImL1s/kotlin-crypto-pure
+          path: kotlin-crypto-pure
       - name: Enable KVM
         if: matrix.os == 'ubuntu-latest'
         run: |
