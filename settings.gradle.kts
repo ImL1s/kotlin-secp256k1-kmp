@@ -5,6 +5,9 @@ pluginManagement {
     }
     resolutionStrategy {
         eachPlugin {
+            if (requested.id.id.startsWith("org.jetbrains.kotlin")) {
+                useVersion("2.1.0")
+            }
             if (requested.id.namespace == "com.android" || requested.id.name == "kotlin-android-extensions") {
                 useModule("com.android.tools.build:gradle:8.13.1")
             }
