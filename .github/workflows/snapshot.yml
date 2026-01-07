@@ -124,7 +124,7 @@ jobs:
       - name: Check Linux
         if: matrix.os == 'ubuntu-latest'
         shell: bash
-        run: ./gradlew linuxX64Test
+        run: ./gradlew linuxX64Test --include-build ../kotlin-crypto-pure
       - name: Check iOS
         if: matrix.os == 'macOS-latest'
         shell: bash
