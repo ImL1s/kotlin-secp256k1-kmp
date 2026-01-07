@@ -1,16 +1,11 @@
-# Build
-build/
 
-# Idea
-.idea
-*.iml
-
-# Gradle
+# Standard Kotlin/Gradle Ignores
 .gradle
-local.properties
-.gradletasknamecache
-.cxx
-.kotlin
-
-# OS
+/build
+/.idea
 .DS_Store
+/local.properties
+*.iml
+.cxx
+/captures
+.externalNativeBuild
