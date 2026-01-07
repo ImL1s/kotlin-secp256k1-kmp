@@ -50,6 +50,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("com.ionspin.kotlin:bignum:0.3.9")
+                api("org.kotlincrypto.hash:sha2:0.5.3")
                 implementation(libs.kotlinx.serialization.json)
             }
         }
