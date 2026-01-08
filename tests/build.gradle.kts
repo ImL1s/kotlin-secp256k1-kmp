@@ -56,7 +56,8 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation("org.jetbrains.kotlinx:kotlinx-io-core:0.8.0")
-                api(libs.kotlinx.serialization.json)
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+                implementation("org.kotlincrypto.hash:sha2:0.6.1")
             }
         }
         if (includeAndroid) {
