@@ -7,9 +7,6 @@ import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTes
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    if (System.getProperty("includeAndroid")?.toBoolean() == true) {
-        id("com.android.library")
-    }
 }
 val includeAndroid = System.getProperty("includeAndroid")?.toBoolean() ?: true
 

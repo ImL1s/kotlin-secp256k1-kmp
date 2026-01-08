@@ -7,9 +7,7 @@ import java.util.*
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    if (System.getProperty("includeAndroid")?.toBoolean() == true) {
-        id("com.android.library")
-    }
+    alias(libs.plugins.android.library) apply false
     alias(libs.plugins.dokka)
     `maven-publish`
 }
