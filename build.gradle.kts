@@ -20,16 +20,6 @@ tasks.configureEach {
     }
 }
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.13.1")
-    }
-}
 
 allprojects {
     group = "fr.acinq.secp256k1"
