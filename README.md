@@ -1,3 +1,7 @@
+# ⚠️ Deprecated
+
+> This project has been moved into [web3-kmp](https://github.com/ImL1s/web3-kmp). Please check the new repository for the latest updates.
+
 # secp256k1-kmp
 
 > [!IMPORTANT]
@@ -58,3 +62,4 @@ implementation("com.github.ImL1s:kotlin-secp256k1-kmp:0.23.0-watchos")
 
 ## 📄 License
 MIT License
+
