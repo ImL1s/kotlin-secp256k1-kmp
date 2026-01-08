@@ -8,6 +8,11 @@ import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTes
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
 }
+
+repositories {
+    mavenCentral()
+}
+
 val includeAndroid = System.getProperty("includeAndroid")?.toBoolean() ?: true
 
 kotlin {
