@@ -1,7 +1,12 @@
 import com.android.build.gradle.LibraryExtension
 import org.gradle.internal.os.OperatingSystem
 
-val includeAndroid = System.getProperty("includeAndroid")?.toBoolean() ?: true
+val localProperties = java.util.Properties().apply {
+    val file = project.rootProject.file("local.properties")
+    if (file.exists()) load(file.inputStream())
+}
+val skipAndroid = localProperties.getProperty("skip.android")?.toBoolean() ?: false
+val includeAndroid = !skipAndroid && (System.getProperty("includeAndroid")?.toBoolean() ?: true)
 
 if (includeAndroid) {
     evaluationDependsOn(":jni:android")
