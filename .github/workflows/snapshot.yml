@@ -115,7 +115,7 @@ jobs:
           java-version: 21
           distribution: 'adopt'
       - name: Make gradlew executable
-        run: chmod +x gradlew
+        run: sed -i 's/\r$//' gradlew && chmod +x gradlew
       - name: Check JVM
         if: matrix.os != 'windows-latest'
         run: ./gradlew jvmTest --stacktrace --debug
