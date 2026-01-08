@@ -139,10 +139,10 @@ allprojects {
 }
 
 allprojects {
-    val javadocJar = tasks.register<Jar>("javadocJar") {
-        archiveClassifier.set("javadoc")
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
+    // val javadocJar = tasks.register<Jar>("javadocJar") {
+    //    archiveClassifier.set("javadoc")
+    //    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    // }
 
     // Publication
     plugins.withId("maven-publish") {
